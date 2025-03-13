@@ -1,0 +1,31 @@
+https://taetoungs-branch.tistory.com/157
+
+ Anonymous 사용자가 아니고 Remember-me 기능으로 로그인 하지 않은 사용자 일 경우
+출처: https://to-dy.tistory.com/75 [todyDev:티스토리]
+
+
+https://wikidocs.net/268499 프로젝트 공부 시큐리티만 없음\
+
+
+여긴 에러코드 https://keeeeeepgoing.tistory.com/175
+
+https://velog.io/@cyseok123/Spring-Security 시큐리티 여기에서 적용함
+
+https://codevang.tistory.com/266
+
+https://okky.kr/questions/924154
+
+
+
+여긴 에러코드 https://keeeeeepgoing.tistory.com/175
+
+여기도 시큐리티 202050311 여기도 적용함
+https://isaac-christian.tistory.com/entry/Spring-Security-%EA%B6%8C%ED%95%9C-%EB%B6%80%EC%97%AC-%EB%B0%8F-%EC%95%94%ED%98%B8%ED%99%94-%EA%B5%AC%ED%98%84#security-context.xml-1
+
+https://popo015.tistory.com/38  <security:authentication-provider user-service-ref="loginUserDetailService"> db 커스텀 체크 하는중 
+
+https://velog.io/@cksdnr066/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0-JDBC%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%9D%B8%EC%A6%9D%EC%9D%B8%EA%B0%80-%EC%B2%98%EB%A6%AC
+
+authentication-success-handler-ref="" 검색하여 성공
+https://kimsaemjava.tistory.com/251 시큐리티 여기서 보고 이해좀함 ㅠㅠ 2025 03 09
+https://to-dy.tistory.com/94 여기도 공부도움 여기도 된다.
