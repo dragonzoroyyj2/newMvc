@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.com.mapper.TA1001M.TA1001MMapper">
+
+<!--    <resultMap type="org.com.mvc.dto.UserDTO" id="userDto">
+        <id property="ID" column="ID"/>
+        <result property="PW" column="PW"/>
+        <result property="NAME" column="NAME"/>
+        <result property="DEPT_CD" column="DEPT_CD"/>
+        <result property="GROUP_CD" column="GROUP_CD"/>    
+        <result property="REG_DATE" column="REG_DATE"/>            
+        <collection property="ROLE_CD" resultMap="ROLE_CD"></collection>
+    </resultMap>
+ -->
+
+<sql id="search">
+ <if test="searchType != null" > 
+   <if test="searchType == 't'.toString()">
+     and title like CONCAT('%', #{keyword}, '%')
+   </if>
+   <if test="searchType == 'c'.toString()">
+     and content like CONCAT('%', #{keyword}, '%')
+   </if>
+   <if test="searchType == 'w'.toString()">
+     and writer like CONCAT('%', #{keyword}, '%')
+   </if>     
+   <if test="searchType == 'tc'.toString()">
+     and ( title like CONCAT('%', #{keyword}, '%') OR content like CONCAT('%', #{keyword}, '%'))
+   </if>        
+   <if test="searchType == 'cw'.toString()">
+     and ( content like CONCAT('%', #{keyword}, '%') OR writer like CONCAT('%', #{keyword}, '%'))
+   </if>        
+   <if test="searchType == 'tcw'.toString()">
+     and (   title like CONCAT('%', #{keyword}, '%') 
+           OR 
+             content like CONCAT('%', #{keyword}, '%') 
+           OR 
+             writer like CONCAT('%', #{keyword}, '%'))
+   </if>              
+ </if>  
+</sql>
+
+ <select id="selectTA1001M" resultType="TA1001MDTO">
+ <![CDATA[
+ SELECT
+	  
+	ID
+	,PW
+	,NAME
+	,DEPT_CD
+	,GROUP_CD
+	,PHONE
+	,ADDRESS
+	,GENDER
+	,AGE
+	,FILE_NAME
+	,FILE_PATH
+	,REG_ID
+	,REG_DATE
+	,MOD_ID
+	,MOD_DATE
+	,ROLE_CD
+FROM TA1001M	
+ ]]>  
+ </select>
+ 
+ 
+  <select id="findUser" resultType="userDto">
+ <![CDATA[
+ SELECT
+  
+*
+FROM USERS	
+ ]]>  
+ </select>
+ 
+ 
+<select id="findByUser" resultType="MemberDetails" parameterType="String">
+	 <![CDATA[
+SELECT
+U.*, A.AUTHORITY
+FROM
+TB_USER U LEFT JOIN TB_AUTH A ON U.MEMBER_SEQ = A.MEMBER_SEQ
+WHERE A.USERNAME = #{username}
+	 ]]>  
+ </select>
+ 
+ 
+<insert id="inserUser">
+INSERT INTO TB_USER
+(
+	 MEMBER_SEQ	
+	,USER_ID		
+	,PASSWORD	
+	,USERNAME	
+	,NAME		
+)
+VALUES 
+(
+	 ( SELECT TO_CHAR(SYSDATE, 'YYYYMMDD') || NVL(MAX(MEMBER_SEQ),0) +1 FROM TB_USER )
+	,#{user_id}		
+	,#{password}	
+	,#{username}		
+	,#{name}			
+)
+</insert>
+
+
+
+<insert id="insertTA1001M">
+<!-- insertTA1001M -->
+INSERT INTO TA1001M
+(
+	ID			,
+	PW			,
+	NAME		,
+	DEPT_CD		,
+	GROUP_CD	,
+	PHONE		,
+	ADDRESS		,
+	GENDER		,
+	AGE			,
+	FILE_NAME	,
+	FILE_PATH	,
+	REG_ID		,
+	REG_DATE		
+)
+VALUES 
+(
+	#{id}		,
+	#{pw}		,
+	#{name}		,
+	#{dept_cd}	,
+	#{group_cd}	,
+	#{phone}	,
+	#{address}	,
+	#{gender}	,
+	#{age}		,
+	#{file_name},
+	#{file_path},
+	'ADMIN'	,
+	SYSDATE
+)
+</insert>
+ 
+ 
+ 
+</mapper>

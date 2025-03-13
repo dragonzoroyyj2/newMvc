@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd
+		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+	
+	
+	<!-- <bean id="propertyConfigurer"
+      class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    <property name="locations">
+        <list>
+          <value>classpath:/work/${spring.profiles.active}.properties</value>
+        </list>
+    </property>
+</bean> -->
+	
+	
+	<util:properties id="property" location="/WEB-INF/properties/db.properties" />
+	
+	<!-- 		<context:property-placeholder location="properties/db.properties"/> 
+		 -->
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+		<!-- H2 데이터베이스 DataSource 설정 -->
+    <bean id="dataSource2" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="org.h2.Driver"/>
+        <property name="url" value="jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;"/>
+        <property name="username" value="sa"/>
+        <property name="password" value=""/>
+    </bean>
+
+	 <!-- DataSourceInitializer 설정 -->
+	<bean id="dataSourceInitializer" class="org.springframework.jdbc.datasource.init.DataSourceInitializer">
+	    <property name="dataSource" ref="dataSource2"/> <!-- DataSource 객체 연결 -->
+	    <property name="enabled" value="true"/> <!-- 초기화 기능 활성화 -->
+	    
+	    <property name="databasePopulator"> <!-- 초기화 기능 활성화 -->
+	    	<bean class="org.springframework.jdbc.datasource.init.ResourceDatabasePopulator">
+	    	<property name="scripts" >
+	    		<list>
+	    			<value>classpath:data.sql</value>
+	    		</list>
+		    </property> <!-- 여러 개의 SQL 스크립트 -->
+		    </bean>
+	    </property>
+	</bean>
+	
+	
+	
+	
+
+    <!-- 기존 데이터베이스 설정 -->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+       <!--
+         <property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"/>
+        <property name="url" value="jdbc:log4jdbc:oracle:thin:@localhost:1521:orcl"/>
+        <property name="username" value="com"/>
+        <property name="password" value="com"/>  -->
+      
+        <property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"/>
+        <property name="url" value="jdbc:log4jdbc:oracle:thin:@localhost:1521:orcl"/>
+         <property name="username" value="com"/>
+        <property name="password" value="com"/> 
+		<!-- <property name="username" value="#{property['oracleDb.username']}"></property>
+		<property name="password" value="#{property['oracleDb.password']}"></property> -->
+		
+		
+    </bean>
+
+    <!-- MyBatis 와 스프링 연동 Connection -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="configLocation" value="classpath:/mybatis-config.xml"/>
+        <property name="mapperLocations" value="classpath:/mappers/**/*Mapper.xml"/>
+    </bean>
+
+    <bean id="sqlSessionFactory2" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource2"/>
+        <property name="configLocation" value="classpath:/mybatis-config.xml"/>
+        <property name="mapperLocations" value="classpath:/mappers/**/*Mapper.xml"/>
+    </bean>
+
+    <!-- SqlSessionTemplate : DAO 작업연결 -->
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
+        <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"/>
+    </bean>
+
+    <bean id="sqlSession2" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
+        <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory2"/>
+    </bean>
+
+  	<!-- MapperScannerConfigurer를 사용하여 @Mapper 어노테이션이 붙은 매퍼 인터페이스 자동 스캔 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="org.com.mvc.mappers"/>
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+	</bean>
+
+
+	<!-- 트랜잭션 매니저의 설정 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager" >
+ 	  <property name="dataSource" ref="dataSource"></property>
+ 	</bean>	
+
+    <!-- 컴포넌트 스캔 -->
+    <context:component-scan base-package="org.com.mvc.dao"/>
+    <context:component-scan base-package="org.com.mvc.service"/>
+    <context:component-scan base-package="org.com.mvc.app.security"/>
+    
+</beans>
