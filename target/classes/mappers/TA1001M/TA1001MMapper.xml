@@ -76,6 +76,51 @@ FROM USERS
  </select>
  
  
+ 
+  
+  <select id="findById"  resultType="org.com.mvc.dto.LoginDTO" parameterType="String">
+ <![CDATA[
+ SELECT
+id			
+,pass         
+,name         
+,ssn          
+,birthday     
+,marry        
+,gender       
+,position     
+,duty         
+,classes      
+,startday     
+,endday       
+,deptno       
+,curstate     
+,zipcode      
+,addr         
+,detailaddr   
+,phonehome    
+,phoneco      
+,phonecell    
+,email        
+,profile_photo
+,deptname     
+,job_category 
+,menupath     
+FROM MEMBER
+where USERNAME	  = #{username}
+ ]]>  
+ </select>
+ 
+ <select id="authorityList" parameterType="String" resultType="org.com.mvc.dto.MemberAuthoritysDTO">
+	SELECT M.ID,A.AUTHORITYNAME 
+	FROM MEMBER M, DEPT D, JOB G, GROUPAUTHORITY GA, AUTHORITY A
+	WHERE M.DEPTNO = D.DEPTNO
+     		AND D.JOB_CATEGORY = G.JOB_ID
+     		AND GA.GROUPID = G.JOB_ID
+     		AND A.AUTHORITYID = GA.AUTHORITYID
+     		AND M.ID=#{id}
+ </select>
+ 
 <select id="findByUser" resultType="MemberDetails" parameterType="String">
 	 <![CDATA[
 SELECT

@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
 encoding//src/main/resources/data.sql=UTF-16
 encoding//src/main/resources/db.properties=UTF-8
+encoding//src/main/webapp/WEB-INF/views/home.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/pages/login/loginFail.jsp=UTF-8

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.com.mvc.mappers.LoginMapper">
+
+<insert id="addMember">
+	Insert into COM.MEMBER
+	(ID,PASS,NAME,SSN,BIRTHDAY,MARRY,GENDER,POSITION,DUTY,CLASSES,STARTDAY,ENDDAY,DEPTNO,CURSTATE,ZIPCODE,ADDR,DETAILADDR,PHONEHOME,PHONECO,PHONECELL,EMAIL,PROFILE_PHOTO,DEPTNAME,JOB_CATEGORY,MENUPATH)
+	values
+	('test3',#{pass},'주연발','731111-1111111','1973/11/11',null,'1','0','부장','팀장',to_date('25/03/14','RR/MM/DD'),to_date('25/03/14','RR/MM/DD'),'d001',null,null,null,null,null,null,null,null,null,null,null,null)
+</insert>
+
+
+
+
+
+
+
+
+
+<select id="findById"  parameterType="String" resultType="org.com.mvc.dto.LoginDTO" >
+	SELECT
+		 ID			
+		,PASS         
+		,NAME         
+		,SSN          
+		,BIRTHDAY     
+		,MARRY        
+		,GENDER       
+		,POSITION     
+		,DUTY         
+		,CLASSES      
+		,STARTDAY     
+		,ENDDAY       
+		,DEPTNO       
+		,CURSTATE     
+		,ZIPCODE      
+		,ADDR         
+		,DETAILADDR   
+		,PHONEHOME    
+		,PHONECO      
+		,PHONECELL    
+		,EMAIL        
+		,PROFILE_PHOTO
+		,DEPTNAME     
+		,JOB_CATEGORY 
+		,MENUPATH     
+	FROM MEMBER
+	WHERE ID = #{username}
+</select>
+ 
+<select id="listAuthority" parameterType="String" resultType="org.com.mvc.dto.MemberAuthoritysDTO">
+	SELECT 
+		 M.ID
+		,A.AUTHORITYNAME 
+	FROM MEMBER M, DEPT D, JOB G, GROUPAUTHORITY GA, AUTHORITY A
+	WHERE M.DEPTNO = D.DEPTNO
+  	AND D.JOB_CATEGORY = G.JOB_ID
+  	AND GA.GROUPID = G.JOB_ID
+  	AND A.AUTHORITYID = GA.AUTHORITYID
+  	AND M.ID=#{id}
+ </select>
+
+ 
+ 
+</mapper>

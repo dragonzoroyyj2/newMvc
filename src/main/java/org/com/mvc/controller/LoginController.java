@@ -53,7 +53,7 @@ public class LoginController {
 		logger.info("principal  is {}", principal);
 		model.addAttribute("data", "Hello <b>Spring!</b>");
 
-
+		//
 		return "/pages/main/mainBoard";
 		
 	}
