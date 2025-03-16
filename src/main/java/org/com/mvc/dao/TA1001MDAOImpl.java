@@ -18,6 +18,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
+import org.com.mvc.dto.LoginDTO;
 import org.com.mvc.dto.MemberDetails;
 import org.com.mvc.dto.TA1001MDTO;
 import org.com.mvc.dto.UserDTO;
@@ -56,6 +57,11 @@ public class TA1001MDAOImpl implements TA1001MDAO{
 	public  List<MemberDetails> findByUser(String username) throws Exception {
 		// TODO Auto-generated method stub
 		return session.selectList(namespace+".findByUser",username);
+	}
+
+	@Override
+	public LoginDTO findById(String username) throws Exception {
+		return session.selectOne(namespace+".findById");
 	}
 
 }

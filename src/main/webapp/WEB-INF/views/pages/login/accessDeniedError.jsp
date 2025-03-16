@@ -30,63 +30,8 @@
 <hr>
 메세지다 : ${msg}
 
-  <!-- /.content-wrapper -->
-  
-<div class="row">
-        <div class="col-12">
-          <!-- <a href="#" class="btn btn-secondary">Cancel</a> -->
-          <input type="button" value="fnPostFetch()" class="btn btn-success float-left" id="fnPostFetch" onclick="fnPostFetch();">
-        </div>
 </div>
-  
-  <script>
-$(document).ready(function(){
-	
-	 
-});
-
-function fnGetFetch(){
-	
-	fetch('https://api.example.com/data')
-	.then(response => {
-	  if (!response.ok) {
-	    throw new Error('HTTP error! status: ' + response.status);
-	  }
-	  return response.json();
-	})
-	.then(data => console.log(data))
-	.catch(error => console.error('There was an error!', error));
-	
-}
-
-
-	async function postJSON(data) {
-		  try {
-		    const response = await fetch("/base/api/v1/findUser", {
-		      method: "POST", // 또는 'PUT'
-		      headers: {
-		        "Content-Type": "application/json",
-		      },
-		      body: JSON.stringify(data),
-		    });
-	
-		    const result = await response.json();
-		    console.log("성공:", result);
-		  } catch (error) {
-		    console.error("실패:", error);
-		  }
-	}
-
-	
-	function fnPostFetch(){
-		const data = { 	mapper : "TA1001M.TA1001MMapper",
-	         			   sql : "findUser",};
-		postJSON(data);	
-	}
-	
-
-</script>
-
+<!-- /.content-wrapper -->
   
   <%@include file="../../include/footer.jsp" %>
   

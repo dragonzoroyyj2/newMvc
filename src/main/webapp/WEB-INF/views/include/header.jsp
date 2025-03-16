@@ -6,7 +6,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MyWork WEB ver0.1</title>
+  <title>MyWork In.A ver0.1</title>
   <!-- favicon -->
   <link rel="shortcut icon" href="/resources/static/favicon-16x16.png">
   
@@ -41,8 +41,20 @@
 	<!-- jQuery UI 1.11.4 -->
 	<script src="/resources/plugins/jquery-ui/jquery-ui.min.js"></script>
 	
-	  
+	<meta name="_csrf_header" content="${_csrf.headerName}">
+    <meta name="_csrf" content="${_csrf.token}">
+    
+    
 </head>
+<script type="text/javascript">
+
+//DOM에서 메타 태그를 읽어서 CSRF 헤더와 토큰 값을 가져옵니다.
+const csrfHeader = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
+const csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('content');
+
+</script>
+
+
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
 
@@ -191,8 +203,14 @@
 
     	<sec:authentication property="principal" var="principal" />
 			<li class="nav-item">
-      		 <a href="/pages/login/logOut" class="nav-link" ><p>로그아웃</p></a>
-      		 </li>
+      		
+      		 
+      		 
+      		     <form method="post" action="/logOut">
+        			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+        			<input type="submit" value="로그아웃" />
+    			</form>
+      		  </li>
 	</sec:authorize> 
 
      <sec:authorize access="isAnonymous()">

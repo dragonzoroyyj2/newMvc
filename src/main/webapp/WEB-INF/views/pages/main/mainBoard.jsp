@@ -119,6 +119,7 @@
               <div class="card-header">
                 <h3 class="card-title">DataTable with default features</h3>
                 <button type="button" id="userInsert" onclick="fnUserInsert();">userInsert</button>
+                <button type="button" id="fnAddMember" onclick="fnAddMember();">fnAddMember</button>
               </div>
               <!-- /.card-header -->
               
@@ -284,8 +285,11 @@ function fnSearch(){
 	 
 	 $.ajax({
 	        url: "/base/api/v1/user",
-	        type: "post",
-	        
+	        method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                [csrfHeader]: csrfToken  // CSRF 토큰을 헤더에 추가
+            },
 	        data: JSON.stringify({
 	        	mapper : "TA1001M.TA1001MMapper",
 	            sql: "selectTA1001M",
@@ -324,8 +328,11 @@ function fnSearch2(){
 	 
 	 $.ajax({
 	        url: "/base/api/v1/member",
-	        type: "post",
-	        
+	        method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                [csrfHeader]: csrfToken  // CSRF 토큰을 헤더에 추가
+            },
 	        data: JSON.stringify({
 	        	user_name : "test1",
 	            
@@ -352,6 +359,7 @@ async function postJSON(data) {
 				  method: "POST", // 또는 'PUT'
 				  headers: {
 				    "Content-Type": "application/json",
+				    [csrfHeader]: csrfToken  // 메타 태그에서 읽은 CSRF 헤더와 토큰 사용
 				  },
 				  body: JSON.stringify(data),
 			});
@@ -379,6 +387,38 @@ function fnUserInsert(){
 	postJSON(data);
 }	
 	
+	
+	
+async function postAddMemberJSON(data) {		
+	try {
+			const response = await fetch("/addMember", {
+				  method: "POST", // 또는 'PUT'
+				  headers: {
+				    "Content-Type": "application/json",
+				    [csrfHeader]: csrfToken  // 메타 태그에서 읽은 CSRF 헤더와 토큰 사용
+				  },
+				  body: JSON.stringify(data),
+			});
+
+		    //const result = await response.json();
+		    const result = await response.text();
+		    console.log("성공:", result);
+	    
+	} catch (error) {
+	    console.error("실패:", error);
+	}
+}
+
+
+	
+function fnAddMember(){
+	
+	const data = { 
+			pass	: "1234" ,
+		 };
+	
+	postAddMemberJSON(data);
+}	
 	
 	
 

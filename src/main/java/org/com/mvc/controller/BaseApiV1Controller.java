@@ -64,9 +64,7 @@ public class BaseApiV1Controller {
 		
 	}
 	
-	
-	
-	*/
+'	*/
 	
 	@RequestMapping(value = "/base/api/v1/user", method = RequestMethod.POST)
 	public ResponseEntity<?> select(@RequestBody ApiV1DTO  apiV1DTO ) throws Exception {
@@ -145,8 +143,8 @@ public class BaseApiV1Controller {
 		
 		 return new ResponseEntity(apiDto,HttpStatus.OK);
 	}
-	
 
+	
 	public <T> T createInstance(Class<T> clazz) throws Exception {
 		return clazz.getDeclaredConstructor().newInstance();
 	}

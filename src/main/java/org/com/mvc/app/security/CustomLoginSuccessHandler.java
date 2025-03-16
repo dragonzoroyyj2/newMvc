@@ -8,8 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.com.mvc.controller.BaseApiV1Controller;
-import org.com.mvc.dto.UserDTO;
+import org.com.mvc.dto.SecurityLoginDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
@@ -27,6 +26,12 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler{
 		logger.info("============================================");
 		logger.info("@@@@@@@@@@@@ CustomLoginSuccessHandler page start");
 		logger.info("============================================");
+		
+		//인증된 사용자의 정보를 추출
+		SecurityLoginDTO dto =(SecurityLoginDTO)authentication.getPrincipal();
+		logger.info("인증된 사용자의 정보를 추출 is {}" , dto); 
+		
+		
 		//권한별 조치
 		// - 일반회원 > "/member.do"
 		// - 관리자 > "/admin.do"
@@ -55,6 +60,13 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler{
 		if(roleNames.contains("ROLE_MEMBER")) {
 			
 			response.sendRedirect("/pages/insa/page1");
+			return;
+		}
+		
+		
+		if(roleNames.contains("ROLE_USER")) {
+			
+			response.sendRedirect("/pages/main/mainBoard");
 			return;
 		}
 		

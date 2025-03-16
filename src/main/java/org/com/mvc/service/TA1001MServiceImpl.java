@@ -18,6 +18,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.com.mvc.dao.TA1001MDAO;
+import org.com.mvc.dto.LoginDTO;
 import org.com.mvc.dto.MemberDetails;
 import org.com.mvc.dto.TA1001MDTO;
 import org.com.mvc.dto.UserDTO;
@@ -48,6 +49,11 @@ public class TA1001MServiceImpl implements TA1001MService{
 	public List<MemberDetails>  findByUser(String username) throws Exception {
 		// TODO Auto-generated method stub
 		return (List<MemberDetails>) dao.findByUser(username);
+	}
+
+	@Override
+	public LoginDTO findById(String username) throws Exception {
+		return dao.findById(username);
 	}
 
 

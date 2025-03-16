@@ -3,6 +3,24 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee https://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 
+  	 <!-- 세션 타임아웃 설정
+  	 	Session 우선순위
+		1.세션객체에 직접 setMaxInactiveInterval(int interval) 시간을 지정한 경우
+		2.[Project] WEB-INF/web.xml 시간을 지정한 경우
+		3.[WAS] conf/web.xml 시간을 지정한 경우
+  	  -->
+    <session-config>
+        <!-- 세션 타임아웃을 30분으로 설정 -->
+        <session-timeout>1</session-timeout>
+    </session-config>
+
+	<!-- security-context.xml 세션 관리 설정  -->
+	<listener>
+	    <listener-class>
+	      org.springframework.security.web.session.HttpSessionEventPublisher
+	    </listener-class>
+	</listener>
+
 	<error-page>
 		<error-code>404</error-code>
 		<location>/WEB-INF/views/error/error404.jsp</location>

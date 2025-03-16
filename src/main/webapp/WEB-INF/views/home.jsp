@@ -1,14 +1,13 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" pageEncoding="UTF-8" %>
-<%@ page session="false" %>
-<html>
-<head>
-	<title>Home</title>
-</head>
-<body>
-<h1>
-	Hello world!  
-</h1>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    data-layout-decorate="~{structure/layout/type1}"
+    >
 
-<P>  The time on the server is ${serverTime}. </P>
-</body>
+<div layout:fragment="content">
+
+  컨텐츠
+
+</div>
+
 </html>
