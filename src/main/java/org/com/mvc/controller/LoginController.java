@@ -49,12 +49,11 @@ public class LoginController {
 	
 			
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String index(Model model, Principal principal, HttpServletRequest request) {
+	public String welcome(Model model, Principal principal, HttpServletRequest request) {
 		logger.info("principal  is {}", principal);
 		model.addAttribute("data", "Hello <b>Spring!</b>");
 
-		//
-		return "/pages/main/mainBoard";
+		return "home";
 		
 	}
 	@RequestMapping(value = "/pages/login/loginPage", method = RequestMethod.GET)

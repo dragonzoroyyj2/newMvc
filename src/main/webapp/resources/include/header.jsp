@@ -56,6 +56,7 @@ const csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('con
 
 
 <body class="hold-transition sidebar-mini layout-fixed">
+
 <div class="wrapper">
 
   <!-- Preloader -->
@@ -223,6 +224,8 @@ const csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('con
       
     </ul>
   </nav>
+  
+  
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
@@ -253,7 +256,6 @@ const csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('con
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
-    </div>
     <!-- /.sidebar -->
   </aside>
 

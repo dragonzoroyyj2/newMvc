@@ -2,7 +2,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="spring"%>
 
-<%@include file="../../include/header.jsp" %>
 
 <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -11,12 +10,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Dashboard11 </h1>
+            <h1 class="m-0">MyFamily</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard v1</li>
+              <li class="breadcrumb-item active">MyFamily</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -37,9 +36,7 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>150</h3>
-
-                <p>1 BOX</p>
+                <h3>아빠</h3>
               </div>
               <div class="icon">
                 <i class="ion ion-bag"></i>
@@ -53,9 +50,8 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>53<sup style="font-size: 20px">%</sup></h3>
+                <h3>엄마</h3>
 
-                <p>2 BOX</p>
               </div>
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
@@ -69,9 +65,7 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>44</h3>
-
-                <p>3 BOX</p>
+                <h3>인우</h3>
               </div>
               <div class="icon">
                 <i class="ion ion-person-add"></i>
@@ -83,11 +77,9 @@
           
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-danger">
+            <div class="small-box bg-blue">
               <div class="inner">
-                <h3>65</h3>
-
-                <p>4 BOX</p>
+                <h3>인아</h3>
               </div>
               <div class="icon">
                 <i class="ion ion-pie-graph"></i>
@@ -425,5 +417,4 @@ function fnAddMember(){
 </script>
 
   
-  <%@include file="../../include/footer.jsp" %>
   

@@ -2,7 +2,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<%@include file="../include/header.jsp" %>
 
 <div class="content-wrapper" style="min-height: 1170px;">
     <!-- Content Header (Page header) -->
@@ -46,7 +45,3 @@
   </div>
 
 
-
-
-
-<%@include file="../include/footer.jsp" %>

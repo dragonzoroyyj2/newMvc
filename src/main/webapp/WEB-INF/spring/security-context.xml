@@ -32,7 +32,9 @@
 	
 		<!-- <security:csrf disabled="true"/> -->
 		
+		<security:intercept-url pattern="/tiles/**"	access="permitAll" />
 		<security:intercept-url pattern="/"	access="permitAll" />
+		<security:intercept-url pattern="/pages/home"	access="permitAll" />
 		
 		<security:intercept-url pattern="/pages/login/loginPage"	access="isAnonymous()" />
 		<security:intercept-url pattern="/loginCtr"	access="permitAll" />
