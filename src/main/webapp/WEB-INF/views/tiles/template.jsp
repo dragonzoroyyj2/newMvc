@@ -61,10 +61,19 @@ const csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('con
 
     <div id="header"><tiles:insertAttribute name="header" /></div>
     <div id="left"><tiles:insertAttribute name="left" /></div>
-    <div id="body"><tiles:insertAttribute name="body" /></div>    
+    <div id="content"><tiles:insertAttribute name="content" /></div>    
     <div id="footer"><tiles:insertAttribute name="footer" /></div>
     
+
 </div> 
+
+<!--  modal------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ -->
+<!-- modal-default   $('#modal-default').modal(); -->
+<div class="modal fade" id="modal-default" style="display: none;" aria-hidden="true">
+</div>
+
+<!--  /.modal----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+
 <!-- Bootstrap 4 -->
 <script src="/resources/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 
@@ -116,6 +125,11 @@ const csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('con
     $(function() {
 
     });    
+    
+    
+    $('#modal-default').on('hidden.bs.modal', function (e) {
+    	$("#modal-default").empty();
+    });
 </script>   
      
 </body>

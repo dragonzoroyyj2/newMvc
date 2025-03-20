@@ -29,78 +29,89 @@ public class SecurityLoginService implements UserDetailsService{
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		logger.info("loadUserByUsername 호출");
+		
 		
 		LoginDTO loginDTO = null; 
 		UserDetails loginUser = null;
 		
+			
 		try {
-			
 			loginDTO = loginService.findById(username);
-			
-		} catch (Exception e1) {
-			throw new UsernameNotFoundException(username);
+		} catch (Exception e) {
+			logger.error( "loginService.findById error  is {}" , e);
 		}
+			
 		
 		logger.info("loginDTO:" + loginDTO);
 		
+		/*
+		 * 사용자 정보가 없을 경우 처리 (로그인 시)
+			UsernameNotFoundException 예외가 발생하면, Spring Security는 로그인 실패 시
+				기본적으로 AuthenticationException을 던지고,
+				이를 처리할 수 있는 AuthenticationFailureHandler가 호출됩니다
+		*/
+		 if (loginDTO == null) {
+			 throw new UsernameNotFoundException("User not found: " + username);
+		 }
 			
-			//권한정보 조회하기
-			List<MemberAuthoritysDTO> authorityList = null;
+		//권한정보 조회하기
+		List<MemberAuthoritysDTO> authorityList = null;
+		
+		try {
 			
-			try {
-				
-				authorityList = loginService.ListAuthority(username);
-				
-			} catch (Exception e1) {
-				throw new UsernameNotFoundException(username);
-			}
+			authorityList = loginService.ListAuthority(username);
 			
+		} catch (Exception e1) {
 			
-			logger.info("authorityList is {}", authorityList);
+			throw new UsernameNotFoundException(username);
+		}
 			
-			List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+		
+		logger.info("authorityList is {}", authorityList);
+		
+		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 
-			for(int i=0;i<authorityList.size();i++) {
-				authorities.add(new SimpleGrantedAuthority(authorityList.get(i).getAuthorityname()));
-			}
+		for(int i=0;i<authorityList.size();i++) {
+			authorities.add(new SimpleGrantedAuthority(authorityList.get(i).getAuthorityname()));
+		}
+		
+		logger.info("authorities is {}", authorities);
 			
-			logger.info("authorities is {}", authorities);
-			
-			//인증정보와 권한을 User객체로 변환하여 리턴하기
-			System.out.println(authorities);
-			loginUser = new SecurityLoginDTO(
-						 authorities
-						,loginDTO.getId()  
-						,loginDTO.getPass()
-						,loginDTO.getName()
-						,loginDTO.getSsn()
-						,loginDTO.getBirthday()
-						,loginDTO.getMarry()
-						,loginDTO.getGender()
-						,loginDTO.getPosition()
-						,loginDTO.getDuty()
-						,loginDTO.getClasses()
-						,loginDTO.getStartday()
-						,loginDTO.getEndday()
-						,loginDTO.getDeptno()
-						,loginDTO.getCurstate()
-						,loginDTO.getZipcode()
-						,loginDTO.getAddr()
-						,loginDTO.getDetailaddr()
-						,loginDTO.getPhonehome()
-						,loginDTO.getPhoneco()
-						,loginDTO.getPhonecell()
-						,loginDTO.getEmail()
-						,loginDTO.getProfile_photo()
-						,loginDTO.getDeptname()
-						,loginDTO.getJob_category()
-						,loginDTO.getMenupath());
-			
-			
-			System.out.println(loginUser);
-			logger.info("loginUser is {}",  authorities);
-			
-			return loginUser;
+		//인증정보와 권한을 User객체로 변환하여 리턴하기
+		loginUser = new SecurityLoginDTO(
+					 authorities
+					,loginDTO.getId()  
+					,loginDTO.getPass()
+					,loginDTO.getName()
+					,loginDTO.getSsn()
+					,loginDTO.getBirthday()
+					,loginDTO.getMarry()
+					,loginDTO.getGender()
+					,loginDTO.getPosition()
+					,loginDTO.getDuty()
+					,loginDTO.getClasses()
+					,loginDTO.getStartday()
+					,loginDTO.getEndday()
+					,loginDTO.getDeptno()
+					,loginDTO.getCurstate()
+					,loginDTO.getZipcode()
+					,loginDTO.getAddr()
+					,loginDTO.getDetailaddr()
+					,loginDTO.getPhonehome()
+					,loginDTO.getPhoneco()
+					,loginDTO.getPhonecell()
+					,loginDTO.getEmail()
+					,loginDTO.getProfile_photo()
+					,loginDTO.getDeptname()
+					,loginDTO.getJob_category()
+					,loginDTO.getMenupath());
+		
+		
+		System.out.println(loginUser);
+		logger.info("loginUser is {}",  authorities);
+		
+		return loginUser;
 			
 			
 			//@PreAuthorize("hasAuthority('ROLE_USER')")

@@ -10,6 +10,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 
@@ -25,6 +26,10 @@ public class CustomAuthenticationProvider implements AuthenticationProvider{
 	
 	
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
+		
+		
+		UsernamePasswordAuthenticationToken authUser = null;
+		
 		logger.info("authentication is  {}", authentication );
 		//사용자가 입력한 데이터 추출하는 작업
 		String username = authentication.getName();//아이디
@@ -38,7 +43,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider{
 		
        //db인증작업을 하기 위해서 mybatis를 이용해서 db에서 조회한 결과를 저장
 		SecurityLoginDTO user = (SecurityLoginDTO)securityService.loadUserByUsername(username);
-		
+	
 		logger.info("CustomAuthenticationProvider ==> {} ", user);
 		
 		//db에서 조회한 데이터와 사용자가 입력한 데이터를 비교
@@ -48,7 +53,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider{
 		logger.info(" state pwd ==> {} ", state);
 		
 		//원하는데이터를 UsernamePasswordAuthenticationToken로 만들어서 리턴  
-		UsernamePasswordAuthenticationToken authUser = null;
+		
 		
 		if(state) {//로그인 성공
 			

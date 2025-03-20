@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+  "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+  "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+
+<tiles-definitions>
+
+	<!-- tiles 적용 -->
+	<definition name="template" template="/WEB-INF/views/tiles/template.jsp">
+		<put-attribute name="header" value="/WEB-INF/views/tiles/header.jsp" />		
+		<put-attribute name="left" value="/WEB-INF/views/tiles/left.jsp" />
+		<put-attribute name="content" value=""/>
+		<put-attribute name="footer" value="/WEB-INF/views/tiles/footer.jsp" />
+	</definition>
+	
+	<!-- 팝업 레이아웃 설정 (빈 레이아웃) -->
+	<definition name="tilesNoStyle" template="/WEB-INF/views/tiles/template_modal.jsp">
+		<put-attribute name="content" />
+	</definition>
+	
+		<!-- popup으로 끝나는 값 반환시 *popup.jsp 화면 반환 -->
+	<!-- 해당 결과로 /WEB-INF/tiles/popup.jsp 화면이 반환되며, 해당 화면에는 body만 존재 -->
+	<!-- <definition name="*popup" extends="tilesNoStyle">
+		<put-attribute name="body" value="/WEB-INF/jsp/main/{1}popup.jsp" />
+	</definition> -->
+	
+	<definition name="modal/modal" extends="tilesNoStyle">
+		<put-attribute name="content" value="/WEB-INF/views/pages/modal/modal.jsp" />
+	</definition>
+	
+	
+	
+	<definition name="*" extends="template">
+		<put-attribute name="content" value="/WEB-INF/views/pages/{1}.jsp" />
+	</definition>
+	
+	
+	<definition name="*/*/*" extends="template">
+		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}/{3}.jsp" />
+	</definition>
+	
+	<definition name="*/*/*/*" extends="template">
+		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}/{3}/{4}.jsp" />
+	</definition>
+	
+	
+	<definition name="empty" template="/WEB-INF/views/tiles/template_login.jsp">
+		<put-attribute name="content" value="" />
+	</definition>
+	
+	<definition name="pages/login/loginPage" extends ="empty">
+		<put-attribute name="content" value ="/WEB-INF/views/pages/login/loginPage.jsp"/>
+	</definition>
+	
+	
+
+	
+</tiles-definitions>

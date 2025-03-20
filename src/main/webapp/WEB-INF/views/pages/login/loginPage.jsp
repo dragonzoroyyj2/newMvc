@@ -1,25 +1,4 @@
-<%@ page contentType="text/html; charset=utf-8" %>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>GoodLuck | Log in</title>
-  <!-- favicon -->
-  <link rel="shortcut icon" href="/resources/static/favicon-16x16.png">
-  
-  <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="/resources/plugins/fontawesome-free/css/all.min.css">
-  <!-- icheck bootstrap -->
-  <link rel="stylesheet" href="/resources/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="/resources/dist/css/adminlte.min.css">
-</head>
 
-
-<body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
     <a href="/resources/index2.html"><b>Good</b>Luck</a>
@@ -88,16 +67,8 @@
 </div>
 <!-- /.login-box -->
 
-<!-- jQuery -->
-<script src="/resources/plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="/resources/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
-<script src="/resources/dist/js/adminlte.min.js"></script>
-
-
-
 <script>
+
 $(document).on('click', '#btnLogin', function(e){
 	 
     // Get the form element
@@ -121,8 +92,4 @@ $('#btnLogin').on("click", function() {
 	self.location = "/";
         
 }); */
-
-
 </script>
-</body>
-</html>

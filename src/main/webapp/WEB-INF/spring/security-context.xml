@@ -35,11 +35,13 @@
 		<security:intercept-url pattern="/tiles/**"	access="permitAll" />
 		<security:intercept-url pattern="/"	access="permitAll" />
 		<security:intercept-url pattern="/pages/home"	access="permitAll" />
+		<security:intercept-url pattern="/modal/modal" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')" />
 		
 		<security:intercept-url pattern="/pages/login/loginPage"	access="isAnonymous()" />
 		<security:intercept-url pattern="/loginCtr"	access="permitAll" />
 		
 		<security:intercept-url pattern="/pages/login/loginCheckSucc" access="permitAll" />
+		<security:intercept-url pattern="/pages/login/logOut" access="permitAll" />
 		
 		<security:intercept-url pattern="/pages/main/**" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')" />
 		<security:intercept-url pattern="/pages/insa/**" access="hasRole('ROLE_MEMBER')" />

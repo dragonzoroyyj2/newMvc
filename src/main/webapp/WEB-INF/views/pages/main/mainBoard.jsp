@@ -41,7 +41,11 @@
               <div class="icon">
                 <i class="ion ion-bag"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              
+              <!-- <a href="javascript:void(0);" onclick="fnModal();" class="small-box-footer family-info" data-family-code="father" > -->
+              <a href="#" class="small-box-footer family-info" data-family-code="father"  >
+              More info <i class="fas fa-arrow-circle-right"></i>
+              </a>
             </div>
           </div>
            <!-- ./col -->
@@ -56,7 +60,9 @@
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="#" class="small-box-footer family-info" data-family-code="mom"  >
+              More info <i class="fas fa-arrow-circle-right"></i>
+              </a>
             </div>
           </div>
           <!-- ./col -->
@@ -70,7 +76,9 @@
               <div class="icon">
                 <i class="ion ion-person-add"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="#" class="small-box-footer family-info" data-family-code="son"  >
+              More info <i class="fas fa-arrow-circle-right"></i>
+              </a>
             </div>
           </div>
           <!-- ./col -->
@@ -84,7 +92,9 @@
               <div class="icon">
                 <i class="ion ion-pie-graph"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="#" class="small-box-footer family-info" data-family-code="daughter" >
+              More info <i class="fas fa-arrow-circle-right"></i>
+              </a>
             </div>
           </div>
           <!-- ./col -->
@@ -246,10 +256,12 @@
     
   </div>
   <!-- /.content-wrapper -->
-  
 
+
+
+<script>
   
-  <script>
+  
 $(document).ready(function(){
 	
 	  $("#example1").DataTable({
@@ -269,6 +281,59 @@ $(document).ready(function(){
 	  fnSearch2();
 	 
 });
+
+
+
+//'button-class'라는 클래스를 가진 모든 버튼에 클릭 이벤트를 등록
+
+const modal_buttons = document.querySelectorAll('.family-info');
+
+modal_buttons.forEach(button => {
+  button.addEventListener('click', function(event) {
+	  
+	  console.log(event.target.dataset.familyCode);
+	  const sFamilyCode = event.target.dataset;//data-family-code
+	  
+		fetch('/modal/modal', {
+			  method: 'post',
+			  headers: {
+	                'Content-Type': 'application/json',
+	                [csrfHeader]: csrfToken  // CSRF 토큰을 헤더에 추가
+	            },
+	            credentials: 'same-origin',  // 세션 쿠키 사용
+			  
+			  body: JSON.stringify(sFamilyCode)
+			}).then(response => response.text())
+			  .then(html => {
+				  	console.log(html);
+				       
+				  	
+			        $('#modal-default').append(html).modal({keyboard:false, mouse:false});
+			        
+			});
+	  
+  });
+});
+
+/* $("#btnComModal").click(function(){
+	alert('11');
+	//var data = $(this).data('id');
+    //$("#contents.body-contents").val(data);
+    //$("#text-contents.body-contents").html(data);
+});
+
+//모든 .btn 클래스 버튼을 선택
+
+$('#btnComModal').on("click", function(event) {
+alert('11');
+});
+
+$(document).on("click", "#OrderDibtnComModalalog", function () { 
+	alert('11');
+	});
+ */
+
+ 
 
 
 function fnSearch(){
