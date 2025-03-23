@@ -16,13 +16,28 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
-/**
- * Handles requests for the application home page.
- */
 @Controller
 public class WebController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(WebController.class);
+	
+	
+	// /pages/sys/mnu/ 경로
+	@RequestMapping(value = "/pages/{page1}/{page2}/{page3}", method = RequestMethod.GET)
+    public void getPage(
+    		 @PathVariable("page1") String page1
+    		,@PathVariable("page2") String page2
+    		,@PathVariable("page3") String page3
+    		) {
+		
+		logger.info("page1 is {} ", page1);
+		logger.info("page2 is {} ", page2);
+		logger.info("page3 is {} ", page3);
+		
+    }
+	
+	
+	
 	
 	/*
     @PostMapping("/modal/modal")
@@ -41,8 +56,8 @@ public class WebController {
 	
 	
 	
-	@RequestMapping(value = "/main", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
+	@RequestMapping(value = "/home", method = RequestMethod.GET)
+	public void home(Locale locale, Model model) {
 		/*
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
@@ -54,12 +69,12 @@ public class WebController {
 		model.addAttribute("serverTime", formattedDate);	
 		*/
 		
-		return "/pages/main/mainBoard";
+		
 	}
 	
 	
 	@RequestMapping(value = "/pages1/{page1}/{page2}", method = RequestMethod.GET)
-    public String getPage(@PathVariable("page1") String page1, @PathVariable("page2") String page2) {
+    public String getPage1(@PathVariable("page1") String page1, @PathVariable("page2") String page2) {
        
 		// 전달된 페이지 이름을 그대로 반환
         return "/pages/" +page1 + "/" + page2;

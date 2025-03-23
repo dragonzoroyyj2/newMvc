@@ -33,7 +33,7 @@
 		<!-- <security:csrf disabled="true"/> -->
 		
 		<security:intercept-url pattern="/tiles/**"	access="permitAll" />
-		<security:intercept-url pattern="/"	access="permitAll" />
+		<security:intercept-url pattern="/home"	access="permitAll" />
 		<security:intercept-url pattern="/pages/home"	access="permitAll" />
 		<security:intercept-url pattern="/modal/modal" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')" />
 		
@@ -47,7 +47,9 @@
 		<security:intercept-url pattern="/pages/insa/**" access="hasRole('ROLE_MEMBER')" />
 		
 		<security:intercept-url pattern="/pages/admin/**" access="hasRole('ROLE_ADMIN')" />
-		<security:intercept-url pattern="/pages/admin/**" access="hasRole('ROLE_ADMIN')" />
+		
+		
+		<security:intercept-url pattern="/pages/sys/sysmnu/**" access="hasRole('ROLE_ADMIN')" />
 
 
 

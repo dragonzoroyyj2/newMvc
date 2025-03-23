@@ -254,6 +254,7 @@
 
   
   <script>
+  /*
 $(document).ready(function(){
 	
 	  $("#example1").DataTable({
@@ -311,6 +312,7 @@ function fnSearch(){
 	 
 
 }
+*/
 
 </script>
 

@@ -13,11 +13,13 @@
   <link rel="shortcut icon" href="/resources/static/favicon-16x16.png">
   
   <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback"> -->
   <!-- Font Awesome -->
   <link rel="stylesheet" href="/resources/plugins/fontawesome-free/css/all.min.css">
+  
+  <link rel="stylesheet" href="/resources/plugins/fullcalendar/main.css">
   <!-- Ionicons -->
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"> -->
   
   <!-- Tempusdominus Bootstrap 4 -->
   <link rel="stylesheet" href="/resources/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
@@ -68,12 +70,9 @@ const csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('con
 </div> 
 
 <!--  modal------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ -->
-<!-- modal-default   $('#modal-default').modal(); -->
-<div class="modal fade" id="modal-default" style="display: none;" aria-hidden="true">
-</div>
-
+<div class="modal fade" id="modal-default" style="display: none;" aria-hidden="true"></div>
 <!--  /.modal----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
-
+<script src="/resources/plugins/fullcalendar/main.js"></script>
 <!-- Bootstrap 4 -->
 <script src="/resources/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 

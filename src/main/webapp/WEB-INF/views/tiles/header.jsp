@@ -12,7 +12,7 @@
         <a href="/" class="nav-link">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
+        <a href="/pages/main/mainBoard" class="nav-link">Contact</a>
       </li>
     </ul>
 
@@ -144,9 +144,10 @@
       		
       		 
       		 
-      		     <form method="post" action="/logOut">
+      		      <form id="loginForm" method="post" action="/logOut">
         			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-        			<input type="submit" value="로그아웃" />
+        			<!-- <input type="submit" value="로그아웃" /> -->
+        			 <a  class="nav-link" data-widget="fullscreen" href="javascript:void(0);" onclick="submitForm()"><i class="fas fa-sign-in-alt fa-fw"></i></a>
         			<!-- <input type="image" src="/resources/dist/img/base/logout_icon2.png" alt="Submit" class="img-size-22 "/> -->
     			</form>
       		  </li>
@@ -155,14 +156,22 @@
      <sec:authorize access="isAnonymous()">
 
     	<sec:authentication property="principal" var="principal" />
-			<li class="nav-item">
-      		 <a href="/pages/login/loginPage" class="nav-link" ><p>로그인</p></a>
+			<li class="nav-item" >
+			  <a class="nav-link" href="/pages/login/loginPage"  data-widget="fullscreen" role="button">
+          			<i class="fas fa-user fa-fw"></i>
+        		</a>
       		 </li>
 	</sec:authorize>     
       
     </ul>
   </nav>
   
+  
+      <script>
+        function submitForm() {
+            document.getElementById("loginForm").submit();
+        }
+    </script>
   <!-- /.navbar -->
 
  
