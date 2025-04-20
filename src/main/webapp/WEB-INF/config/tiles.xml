@@ -24,8 +24,8 @@
 		<put-attribute name="body" value="/WEB-INF/jsp/main/{1}popup.jsp" />
 	</definition> -->
 	
-	<definition name="modal/modal" extends="tilesNoStyle">
-		<put-attribute name="content" value="/WEB-INF/views/pages/modal/modal.jsp" />
+	<definition name="modal/*" extends="tilesNoStyle">
+		<put-attribute name="content" value="/WEB-INF/views/pages/modal/{1}.jsp" />
 	</definition>
 	
 	

@@ -69,8 +69,14 @@ const csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('con
 
 </div> 
 
+<script>
+
+const modal_buttons = document.querySelectorAll('.cal .modal');
+</script>
+
 <!--  modal------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ -->
 <div class="modal fade" id="modal-default" style="display: none;" aria-hidden="true"></div>
+
 <!--  /.modal----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
 <script src="/resources/plugins/fullcalendar/main.js"></script>
 <!-- Bootstrap 4 -->
@@ -118,7 +124,7 @@ const csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('con
 <script src="/resources/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
 <script src="/resources/plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="/resources/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-
+<script type="text/javascript" src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
 
 <script type="text/javascript">
     $(function() {

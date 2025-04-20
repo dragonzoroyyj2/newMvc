@@ -47,8 +47,11 @@ public class WebController {
     }
     */
     
-    @PostMapping("/modal/modal")
-    public void getHtml(Model model, @RequestBody String code) {
+    @PostMapping("/modal/{modal_page}")
+    public void getHtml(Model model, @RequestBody String code ,  @PathVariable("modal_page") String modal_page) {
+    	
+    	logger.info("modal_page is {} ", modal_page);
+    	
     	model.addAttribute("modal_title", "알림타이틀");
     	model.addAttribute("modal_text", "알림 내용이다..");
     }

@@ -59,7 +59,7 @@
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
               </div>
-              <a href="#" class="small-box-footer family-info" data-family-code="mom"  >
+              <a href="#" class="small-box-footer family-info modal" data-family-code="mom"  >
               More info <i class="fas fa-arrow-circle-right"></i>
               </a>
             </div>
@@ -309,7 +309,7 @@ $(document).ready(function(){
 
 //'button-class'라는 클래스를 가진 모든 버튼에 클릭 이벤트를 등록
 
-const modal_buttons = document.querySelectorAll('.family-info');
+// const modal_buttons = document.querySelectorAll('.family-info');
 
 modal_buttons.forEach(button => {
   button.addEventListener('click', function(event) {
